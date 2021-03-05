@@ -1,19 +1,26 @@
 from TikTokApi import TikTokApi
 import sys
+import json
 
 verifyFp = "verify_kluyei8y_wfM64tFP_RNLH_4LMw_AQXF_zYPBvDIcD2az"
 
 api = TikTokApi.get_instance(use_test_endpoints=True)
 
+# genre = sys.argv[1]
+# count = int(sys.argv[2])
 
 def printMusicSearch(term, numOfResults):
     music = api.search_for_music(term, count=numOfResults)
+    artists, titles = [], []
     for item in music:
-        print('Artist: ' + item['music']['authorName'], '   Title: ' + item['music']['title'])
+        result = {}
+        artists.append(item['music']['authorName'])
+        titles.append(item['music']['title'])
+    return json.dumps([{"Artist": a, "Title": t} for a, t in zip(artists, titles)])
 
-printMusicSearch('lofi', 50)
-# print('////////')
-# print('////////')
-# printMusicSearch('popular', 50)
+
+# print(printMusicSearch(genre, count))
+print(printMusicSearch('lofi', 10))
+
 
 sys.stdout.flush()
