@@ -1,0 +1,3 @@
+[console_scripts]
+playwright = playwright.__main__:main
+
