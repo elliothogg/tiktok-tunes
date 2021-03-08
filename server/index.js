@@ -60,29 +60,28 @@ const videoIds = {
     ]
 }
 
+app.get('/api/lofi', (req, res) => {
+    res.send(videoIds.lofiVideoIds);
+})
+
 app.get('/api/popular', (req, res) => {
+    res.send(videoIds.popularVideoIds);
+})
 
-    const { spawn } = require('child_process');
-    const pyProg = spawn('python3', ['./scrape-tiktok/test.py', 'popular', '5']);
+app.get('/api/indie', (req, res) => {
+    res.send(videoIds.indieMusicVideoIds);
+})
 
-    pyProg.stdout.on('data', function(data) {
+app.get('/api/randb', (req, res) => {
+    res.send(videoIds.rBJamsVideoIds);
+})
 
-        
-        
-        console.log(JSON.parse(data)[0].Artist);
+app.get('/api/challenges', (req, res) => {
+    res.send(videoIds.challengeVideoIds);
+})
 
-        let artist = JSON.parse(data)[0].Artist;
-
-        return getYoutubeUrl(artist, (err, data) => {
-            if (err) console.log('error');//upstream request failed
-
-            console.log(JSON.stringify(data));
-            // res.setHeader('Content-Type', 'application/json');
-            // res.write(data);
-            // res.send(data);
-            res.end();
-          })
-    });
+app.get('/api/hiphop', (req, res) => {
+    res.send(videoIds.HiphopVideoIds);
 })
 
 app.get('/api/lofi', (req, res) => {
@@ -143,7 +142,7 @@ function getYoutubeIds(TiktokSongs, playlistName) {
 
 //updatePlaylist('HiphopVideoIds', 'hip-hopmusic');
 
-app.listen(4000, () => console.log('Application listening on port 4000!'))
+app.listen(3001, () => console.log('Application listening on port 4000!'))
 
 
 
