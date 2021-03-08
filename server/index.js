@@ -8,40 +8,62 @@ const { spawn } = require('child_process');
 const videoIds = {
 
     //TikTok search 'lofi'
-    lofiVideoIds : [],
+    lofiVideoIds : [
+        'xbryhFXXano',
+        'W6YI3ZFOL0A',
+        '4Q9WNQcKLYU',
+        's424d3PkroY',
+        '0bCAmpLoIs8'
+      ],
 
     //TikTok search 'popular'
-    popularVideoIds : [],
+    popularVideoIds : [ 
+        'BfV4ZDgumTQ',
+        'jiXP-FRrSOg',
+        'E0gFA08-9xM',
+        'oJlfuBHLf0o' 
+    ],
     
     //TikTok search 'indiemusic'
-    indieMusicVideoIds : [],
+    indieMusicVideoIds : [
+        'tSRits05kis',
+        'n1FdqKnBR4A',
+        'pjolhlLBb6g',
+        'BtAQfFWYrig',
+        'mRD0-GxqHVo'
+      ],
 
     //TikTok search 'r&bjams'
-    rBJamsVideoIds : [],
+    rBJamsVideoIds : [
+        'AhWcQwn2420',
+        '5cntWT8qAjY',
+        'JH4iPuW-W4U',
+        '16thjt8z0yo' 
+    ],
 
     //TikTok search 'challenge'
-    challengeVideoIds : [],
+    challengeVideoIds : [
+        'rCiBgLOcuKU',
+        'E0gFA08-9xM',
+        'sy9l7y7npGs',
+        'BKJDpuUfXxA',
+        'rCiBgLOcuKU'
+    ],
 
     //TikTok search 'hip-hopmusic'
-    HiphopVideoIds : []
+    HiphopVideoIds : [
+        '8H8L2yPgI68',
+        'a2v_zGWawP0',
+        'C86jztHhLyk',
+        '62lsXiMR7Sk',
+        'l0U7SxXHkPY'
+    ]
 }
-
-
-
-function updatePlaylist(nameOfPlaylist, tiktokSearchTerm) {
-    const pyProg = spawn('python3', ['./scrape-tiktok/test.py', tiktokSearchTerm, '5']);
-    pyProg.stdout.on('data', function(data) {
-        // console.log(JSON.parse(data));
-        getYoutubeIds(JSON.parse(data), nameOfPlaylist);
-    })
-}
-
-// updateLofiPlaylist();
 
 app.get('/api/popular', (req, res) => {
 
     const { spawn } = require('child_process');
-    const pyProg = spawn('python3', ['./scrape-tiktok/test.py', 'popular', '20']);
+    const pyProg = spawn('python3', ['./scrape-tiktok/test.py', 'popular', '5']);
 
     pyProg.stdout.on('data', function(data) {
 
@@ -77,32 +99,49 @@ app.get('/api/lofi', (req, res) => {
 })
 
 
+function updatePlaylist(nameOfPlaylist, tiktokSearchTerm) {
+    const pyProg = spawn('python3', ['./scrape-tiktok/test.py', tiktokSearchTerm, '5']);
+    pyProg.stdout.on('data', function(data) {
+        console.log(JSON.parse(data));
+        getYoutubeIds(JSON.parse(data), nameOfPlaylist);
+    })
+}
 
 //pass in an array of objects with Artist + Title keys
 function getYoutubeIds(TiktokSongs, playlistName) {
-let youtubeResponses = [];
-let promises = [];
-for (i = 0; i < TiktokSongs.length; i++) {
-  promises.push(
-    axios.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=${TiktokSongs[i].Artist + "-" + TiktokSongs[i].Title }&type=video&key=${process.env.YOUTUBE_API_KEY}`).then(response => {
-      // do something with response
-      youtubeResponses.push(response.data.items[0].id.videoId);
-    })
-  )
+    let youtubeResponses = [];
+    let promises = [];
+    for (i = 0; i < TiktokSongs.length; i++) {
+        promises.push(
+            axios.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=${TiktokSongs[i].Artist + "-" + TiktokSongs[i].Title }&type=video&key=${process.env.YOUTUBE_API_KEY}`).then(response => {
+            // do something with response
+            youtubeResponses.push(response.data.items[0].id.videoId);
+            })
+            .catch((error) => {
+                console.log("error:" + error);
+            })
+        )
+    }
+    Promise.all(promises).then(() => {
+        videoIds[playlistName] = youtubeResponses;
+        console.log(videoIds[playlistName]);
+    });
 }
-Promise.all(promises).then(() => addIdsToPlaylist(youtubeResponses, playlistName));
-}
 
 
-function addIdsToPlaylist(arrayIn, playlistName) {
-    videoIds[playlistName] = arrayIn;
-    console.log("hehe", arrayIn);
-    console.log(videoIds.lofiVideoIds);
-}
+//these functions need to be triggered once per week. Max 2 per day (youtube api limit). Can't run two at same time.
 
-updatePlaylist('lofiVideoIds', 'lofi');
+//updatePlaylist('lofiVideoIds','lofi');
 
+//updatePlaylist('popularVideoIds', 'popular');
 
+//updatePlaylist('indieMusicVideoIds', 'indiemusic');
+
+//updatePlaylist('rBJamsVideoIds', 'r&bjams');
+
+//updatePlaylist('challengeVideoIds', 'challenge');
+
+//updatePlaylist('HiphopVideoIds', 'hip-hopmusic');
 
 app.listen(4000, () => console.log('Application listening on port 4000!'))
 

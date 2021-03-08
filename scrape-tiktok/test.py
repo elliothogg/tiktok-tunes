@@ -13,7 +13,6 @@ def printMusicSearch(term, numOfResults):
     music = api.search_for_music(term, count=numOfResults)
     artists, titles = [], []
     for item in music:
-        result = {}
         artists.append((item['music']['authorName']).replace(" ", "-"))
         titles.append((item['music']['title']).replace(" ", "-"))
     return json.dumps([{"Artist": a, "Title": t} for a, t in zip(artists, titles)])
