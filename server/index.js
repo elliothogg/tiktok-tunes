@@ -60,6 +60,10 @@ const videoIds = {
     ]
 }
 
+app.get('/api/videoIDs', (req, res) => {
+    res.send(videoIds);
+})
+
 app.get('/api/lofi', (req, res) => {
     res.send(videoIds.lofiVideoIds);
 })

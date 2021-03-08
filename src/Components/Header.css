@@ -1,0 +1,10 @@
+#header-container {
+    height: 100px;
+    background: rgb(32, 32, 32);
+}
+
+h1 {
+    color: white;
+    padding-left: 10px;
+    padding-top: 10px;
+}
