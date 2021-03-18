@@ -103,7 +103,7 @@ app.get('/api/lofi', (req, res) => {
 
 
 function updatePlaylist(nameOfPlaylist, tiktokSearchTerm) {
-    const pyProg = spawn('python3', ['./scrape-tiktok/test.py', tiktokSearchTerm, '5']);
+    const pyProg = spawn('python3', ['./scrape-tiktok/test.py', tiktokSearchTerm, '1']);
     pyProg.stdout.on('data', function(data) {
         console.log(JSON.parse(data));
         getYoutubeIds(JSON.parse(data), nameOfPlaylist);
@@ -115,9 +115,10 @@ function getYoutubeIds(TiktokSongs, playlistName) {
     let youtubeResponses = [];
     let promises = [];
     for (i = 0; i < TiktokSongs.length; i++) {
+    let teeny = "jello";
         promises.push(
-            axios.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=${TiktokSongs[i].Artist + "-" + TiktokSongs[i].Title }&type=video&key=${process.env.YOUTUBE_API_KEY}`).then(response => {
-            // do something with response
+            axios.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=${TiktokSongs[i].Artist + "-" + TiktokSongs[i].Title }&type=video&key=${process.env.YOUTUBE_API_KEY}`).then( response => {
+            console.log(response.data);
             youtubeResponses.push(response.data.items[0].id.videoId);
             })
             .catch((error) => {
@@ -134,7 +135,7 @@ function getYoutubeIds(TiktokSongs, playlistName) {
 
 //these functions need to be triggered once per week. Max 2 per day (youtube api limit). Can't run two at same time.
 
-//updatePlaylist('lofiVideoIds','lofi');
+updatePlaylist('lofiVideoIds','lofi');
 
 //updatePlaylist('popularVideoIds', 'popular');
 

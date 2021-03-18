@@ -30,8 +30,7 @@ export default function App() {
     fetch('/api/videoIDs')
       .then(response => response.json())
       .then(data => setVideoIDs(data))
-  })
-
+  }, [] )
 
 
   return (
