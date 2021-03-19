@@ -9,7 +9,7 @@ export default function Playlist(props) {
     return (
         <div id="playlist-container">
             {props.playlist.map(item=> 
-                <PlaylistItem key={item.videoId} artist={item.artist.replace('-', ' ')} title={item.title.replace('-', ' ')}/>
+                <PlaylistItem setVideo={props.setVideo} key={item.videoId} artist={item.artist.replace('-', ' ')} title={item.title.replace('-', ' ')} videoId={item.videoId} selectedVideoId={props.selectedVideoId}/>
             )}
             
         </div>

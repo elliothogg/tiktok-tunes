@@ -1,0 +1,18 @@
+.playlist-item-container li {
+    list-style: none;
+    padding-bottom: 20px;
+    font-size: 15pt;
+    color: rgb(207, 207, 207);
+    cursor: pointer;
+    display: inline-block;
+}
+
+.playlist-item-container li:hover {
+    
+    font-size: 16pt;
+}
+
+.playlist-item-container .selected {
+    color: white;
+    font-size: 16pt;
+}

@@ -1,24 +1,40 @@
 #header-container {
     height: 100px;
-    background: rgb(32, 32, 32);
+    background: none;
     position: relative;
 }
 
 #header-container h1 {
-    color: white;
+    color: rgb(207, 207, 207);
     padding-left: 10px;
     padding-top: 10px;
+    position: absolute;
+    top: 7%;
+    left: 3%;
+    font-size: 30pt;
+    cursor: default;
 }
 
 #header-container nav li {
     display:inline-block;
-    color:white;
-    padding-right: 10px;
+    color: rgb(207, 207, 207);
+    padding-right: 30px;
     cursor: pointer;
+    font-size: 18pt;
 }
 
 #header-container nav {
     position: absolute;
-    right: 0%;
+    right: 20%;
+    top: 30%;
 }
 
+#header-container nav li:hover {
+    color: white;
+    font-size: 20pt;
+}
+
+#header-container .selected-menu {
+    color:white;
+    font-size: 23pt;
+}
