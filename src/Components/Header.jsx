@@ -11,12 +11,12 @@ export default function Header(props) {
             <h1>TikTok-Tunes</h1>
             <nav>
                 <ul>
-                    <li>Lofi</li>
-                    <li>Popular</li>
-                    <li>Indie</li>
-                    <li>R & B</li>
-                    <li>HipHop</li>
-                    <li>Challenge</li>
+                    <li onClick={() => props.setPlaylist('lofi')}>Lofi</li>
+                    <li onClick={() => props.setPlaylist('popular')}>Popular</li>
+                    <li onClick={() => props.setPlaylist('indie')}>Indie</li>
+                    <li onClick={() => props.setPlaylist('rBJams')}>R & B</li>
+                    <li onClick={() => props.setPlaylist('hipHop')}>HipHop</li>
+                    <li onClick={() => props.setPlaylist('challenge')}>Challenge</li>
                 </ul>
             </nav>
         </div>

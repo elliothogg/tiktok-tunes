@@ -4,19 +4,21 @@
     position: relative;
 }
 
-h1 {
+#header-container h1 {
     color: white;
     padding-left: 10px;
     padding-top: 10px;
 }
 
-nav li {
+#header-container nav li {
     display:inline-block;
     color:white;
     padding-right: 10px;
+    cursor: pointer;
 }
 
-nav {
+#header-container nav {
     position: absolute;
     right: 0%;
 }
+

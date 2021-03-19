@@ -8,24 +8,28 @@ const { spawn } = require('child_process');
 const videoIds = {
 
     //TikTok search 'lofi'
-    lofiVideoIds : [
-        'xbryhFXXano',
-        'W6YI3ZFOL0A',
-        '4Q9WNQcKLYU',
-        's424d3PkroY',
-        '0bCAmpLoIs8'
+    lofi : [
+        { artist: 'Ponder', title: 'Lofi', videoId: 'xbryhFXXano' },
+        { artist: 'Lofi-Network', title: 'Sunset-Vibes', videoId: 'UxZdyOv9Zdk'},
+        { artist: 'Aesthetic-Sounds', title: 'Lofi', videoId: 'W6YI3ZFOL0A' },
+        { artist: 'Acey', title: 'Lofi', videoId: '0bCAmpLoIs8' },
+        { artist: 'Emapea', title: 'Lofi', videoId: 'FOwll8s6hAs' },
+        { artist: 'Domknowz', title: 'Lofi', videoId: '4Q9WNQcKLYU' },
+        { artist: 'Merlin', title: 'Uh-Oh-Stinky', videoId: 's424d3PkroY' },
+        { artist: 'Fluce', title: 'LoFi', videoId: 'Pc0nDCq1EYY' },
+        {artist: 'Lo-Fi-Hip-Hop', title: 'City-Pop-(LoFi)', videoId: 'EC24rvm5Awk'}
       ],
 
     //TikTok search 'popular'
-    popularVideoIds : [ 
+    popular : [ 
         'BfV4ZDgumTQ',
         'jiXP-FRrSOg',
         'E0gFA08-9xM',
-        'oJlfuBHLf0o' 
+        {artist: 'Popp-Hunna', title: 'Adderall-(Corvette-Corvette)', videoId: 'oJlfuBHLf0o' }
     ],
     
     //TikTok search 'indiemusic'
-    indieMusicVideoIds : [
+    indie : [
         'tSRits05kis',
         'n1FdqKnBR4A',
         'pjolhlLBb6g',
@@ -34,7 +38,7 @@ const videoIds = {
       ],
 
     //TikTok search 'r&bjams'
-    rBJamsVideoIds : [
+    rBJams : [
         'AhWcQwn2420',
         '5cntWT8qAjY',
         'JH4iPuW-W4U',
@@ -42,7 +46,7 @@ const videoIds = {
     ],
 
     //TikTok search 'challenge'
-    challengeVideoIds : [
+    challenge : [
         'rCiBgLOcuKU',
         'E0gFA08-9xM',
         'sy9l7y7npGs',
@@ -51,7 +55,7 @@ const videoIds = {
     ],
 
     //TikTok search 'hip-hopmusic'
-    HiphopVideoIds : [
+    hipHop : [
         '8H8L2yPgI68',
         'a2v_zGWawP0',
         'C86jztHhLyk',
@@ -65,27 +69,27 @@ app.get('/api/videoIDs', (req, res) => {
 })
 
 app.get('/api/lofi', (req, res) => {
-    res.send(videoIds.lofiVideoIds);
+    res.send(videoIds.lofi);
 })
 
 app.get('/api/popular', (req, res) => {
-    res.send(videoIds.popularVideoIds);
+    res.send(videoIds.popular);
 })
 
 app.get('/api/indie', (req, res) => {
-    res.send(videoIds.indieMusicVideoIds);
+    res.send(videoIds.indie);
 })
 
 app.get('/api/randb', (req, res) => {
-    res.send(videoIds.rBJamsVideoIds);
+    res.send(videoIds.rBJams);
 })
 
 app.get('/api/challenges', (req, res) => {
-    res.send(videoIds.challengeVideoIds);
+    res.send(videoIds.challenge);
 })
 
 app.get('/api/hiphop', (req, res) => {
-    res.send(videoIds.HiphopVideoIds);
+    res.send(videoIds.hipHop);
 })
 
 app.get('/api/lofi', (req, res) => {
@@ -103,29 +107,35 @@ app.get('/api/lofi', (req, res) => {
 
 
 function updatePlaylist(nameOfPlaylist, tiktokSearchTerm) {
-    const pyProg = spawn('python3', ['./scrape-tiktok/test.py', tiktokSearchTerm, '1']);
+    const pyProg = spawn('python3', ['./scrape-tiktok/test.py', tiktokSearchTerm, '10']);
     pyProg.stdout.on('data', function(data) {
-        console.log(JSON.parse(data));
+
         getYoutubeIds(JSON.parse(data), nameOfPlaylist);
     })
 }
 
+let data = [];
+
 //pass in an array of objects with Artist + Title keys
 function getYoutubeIds(TiktokSongs, playlistName) {
+    
+    TiktokSongs.map( (items) => {
+        data.push( {Artist: items.Artist, Title: items.Title, videoId: ''} );
+    });
+    
     let youtubeResponses = [];
     let promises = [];
-    for (i = 0; i < TiktokSongs.length; i++) {
-    let teeny = "jello";
-        promises.push(
-            axios.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=${TiktokSongs[i].Artist + "-" + TiktokSongs[i].Title }&type=video&key=${process.env.YOUTUBE_API_KEY}`).then( response => {
-            console.log(response.data);
-            youtubeResponses.push(response.data.items[0].id.videoId);
+    TiktokSongs.map((item) => {
+        return promises.push(
+            axios.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=${item.Artist + "-" + item.Title }&type=video&key=${process.env.YOUTUBE_API_KEY}`)
+            .then( response => {
+            youtubeResponses.push({artist: item.Artist, title: item.Title, videoId: response.data.items[0].id.videoId});
             })
             .catch((error) => {
                 console.log("error:" + error);
             })
         )
-    }
+    });
     Promise.all(promises).then(() => {
         videoIds[playlistName] = youtubeResponses;
         console.log(videoIds[playlistName]);
@@ -135,17 +145,17 @@ function getYoutubeIds(TiktokSongs, playlistName) {
 
 //these functions need to be triggered once per week. Max 2 per day (youtube api limit). Can't run two at same time.
 
-updatePlaylist('lofiVideoIds','lofi');
+//updatePlaylist('lofi','lofi');
 
-//updatePlaylist('popularVideoIds', 'popular');
+//updatePlaylist('popular', 'popular');
 
-//updatePlaylist('indieMusicVideoIds', 'indiemusic');
+//updatePlaylist('indie', 'indiemusic');
 
-//updatePlaylist('rBJamsVideoIds', 'r&bjams');
+//updatePlaylist('rBJams', 'r&bjams');
 
-//updatePlaylist('challengeVideoIds', 'challenge');
+//updatePlaylist('challenge', 'challenge');
 
-//updatePlaylist('HiphopVideoIds', 'hip-hopmusic');
+//updatePlaylist('hipHop', 'hip-hopmusic');
 
 app.listen(3001, () => console.log('Application listening on port 4000!'))
 
