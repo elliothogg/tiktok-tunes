@@ -2,6 +2,7 @@ const express = require('express')
 const app = express()
 const axios = require('axios');
 const { spawn } = require('child_process');
+const PORT = process.env.PORT || 3001;
 
 
 //updated every week over 3 days (due to max 100 youtube requests per day)
@@ -157,7 +158,7 @@ function getYoutubeIds(TiktokSongs, playlistName) {
 
 //updatePlaylist('hipHop', 'hip-hopmusic');
 
-app.listen(3001, () => console.log('Application listening on port 3001!'))
+app.listen(PORT, () => console.log(`Application listening on port ${PORT}!`))
 
 
 
