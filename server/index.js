@@ -3,7 +3,10 @@ const app = express()
 const axios = require('axios');
 const { spawn } = require('child_process');
 const PORT = process.env.PORT || 3001;
+const path = require('path');
 
+const buildPath = path.join(__dirname, '..', 'build');
+app.use(express.static(buildPath));
 
 //updated every week over 3 days (due to max 100 youtube requests per day)
 const videoIds = {
