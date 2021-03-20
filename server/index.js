@@ -157,7 +157,7 @@ function getYoutubeIds(TiktokSongs, playlistName) {
 
 //updatePlaylist('hipHop', 'hip-hopmusic');
 
-app.listen(3001, () => console.log('Application listening on port 4000!'))
+app.listen(3001, () => console.log('Application listening on port 3001!'))
 
 
 

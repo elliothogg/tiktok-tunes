@@ -48,6 +48,7 @@ export default function App() {
     setChosenVideoId('lTRiuFIWV54');
   }
 
+
   console.log(chosenPlaylist);
 
   return (
