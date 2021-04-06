@@ -6,11 +6,11 @@ verifyFp = "verify_kluyei8y_wfM64tFP_RNLH_4LMw_AQXF_zYPBvDIcD2az"
 
 api = TikTokApi.get_instance(use_test_endpoints=True)
 
-# genre = sys.argv[1]
-# count = int(sys.argv[2])
+genre = sys.argv[1]
+count = int(sys.argv[2])
 
-genre = 'popular'
-count = 5
+# genre = 'popular'
+# count = 10
 
 def printMusicSearch(term, numOfResults):
     music = api.search_for_music(term, count=numOfResults)
