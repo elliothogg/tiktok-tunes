@@ -29,6 +29,9 @@ export default function App() {
     window.addEventListener("resize", handleResize);
   }, [] )
 
+  useEffect(()=> {
+    if (videoIDs) setChosenVideoId(videoIDs[chosenPlaylist][0].videoId);
+  }, [chosenPlaylist])
   
   function setVideo(videoId) {
     setChosenVideoId(videoId);
