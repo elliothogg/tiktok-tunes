@@ -2,7 +2,12 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 import Header from './Components/Header';
 import Playlist from './Components/Playlist';
+import ContinousSlider from './Components/volumeSlider';
 import ReactPlayer from 'react-player';
+import PauseIcon from '@material-ui/icons/Pause';
+import PlayArrowIcon from '@material-ui/icons/PlayArrow';
+import SkipNextIcon from '@material-ui/icons/SkipNext';
+import SkipPreviousIcon from '@material-ui/icons/SkipPrevious';
 
 export default function App() {
 
@@ -13,6 +18,8 @@ export default function App() {
   const [windowHeight, setWindowHeight] = useState(window.innerHeight);
   const [videoMuted, setVideoMuted] = useState(true);
   const [videoPlaying, setVideoPlaying] = useState(true);
+  const [volume, setVolume] = useState(0);
+  const [volumeWhenMuted, setVolumeWhenMuted] = useState(1);
 
   function handleResize(e) {
     setWindowWidth(window.innerWidth);
@@ -25,6 +32,7 @@ export default function App() {
       .then(data => {
         setVideoIDs(data);
         setChosenVideoId(data.lofi[0].videoId);
+        console.log(data);
       })
 
     window.addEventListener("resize", handleResize);
@@ -68,14 +76,25 @@ export default function App() {
 
   //This function unmutes the video once its playing. This is needed as youtube won't autoplay if the video isn't muted
   function toggleMute() {
-    setVideoMuted(!videoMuted);
+    setVideoMuted(false);
+
+    if (volume !== 0) {
+      setVolumeWhenMuted(volume);
+      setVolume(0);
+      return;
+    }
+
+    setVolume(volumeWhenMuted);
   }
 
   function togglePlay() {
     setVideoPlaying(!videoPlaying);
   }
 
-
+  function changeVolume(sliderValue) {
+    setVolume(sliderValue/100);
+    setVideoMuted(false);
+  }
   
 
   return (
@@ -83,12 +102,14 @@ export default function App() {
       <Header setPlaylist={setPlaylist} chosenPlaylist={chosenPlaylist}/>
       {renderPlaylist()}
       <div className = 'youtube-container'>
-        <ReactPlayer className = 'video-player' url= {chosenVideoId === undefined ? null : `https://www.youtube.com/watch?v=${chosenVideoId}`} playing={videoPlaying} muted={videoMuted} onEnded={playNextVideo}></ReactPlayer>
+        <ReactPlayer className = 'video-player' url= {chosenVideoId === undefined ? null : `https://www.youtube.com/watch?v=${chosenVideoId}`} volume={volume} playing={videoPlaying} muted={videoMuted} onEnded={playNextVideo}></ReactPlayer>
       </div>
-      <button className='mute-unmute-button' onClick={toggleMute}>Unmute</button>
-      <button className='play-pause-button' onClick={togglePlay}>Play</button>
-      <button className='next-track-button' onClick={playNextVideo}>Next</button>
-      <button className='previous-track-button' onClick={playPreviousVideo}>Previous</button>
+      <div className='controls'>
+      <SkipPreviousIcon className='control-icons' onClick={playPreviousVideo}/>
+      {videoPlaying === true ? <PauseIcon className='control-icons' onClick={togglePlay}/> : <PlayArrowIcon className='control-icons' onClick={togglePlay}/>}
+      <SkipNextIcon className='control-icons' onClick={playNextVideo}/>
+      <ContinousSlider changeVolume={changeVolume} volume={volume} toggleMute={toggleMute}/>
+      </div>
 
     </div>
   );
