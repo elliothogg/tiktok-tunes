@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Header from './Components/Header';
 import Playlist from './Components/Playlist';
-import YouTube from 'react-youtube';
+import ReactPlayer from 'react-player';
 
 export default function App() {
 
@@ -12,6 +11,8 @@ export default function App() {
   const [videoIDs, setVideoIDs] = useState();
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [windowHeight, setWindowHeight] = useState(window.innerHeight);
+  const [videoMuted, setVideoMuted] = useState(true);
+  const [videoPlaying, setVideoPlaying] = useState(true);
 
   function handleResize(e) {
     setWindowWidth(window.innerWidth);
@@ -47,23 +48,48 @@ export default function App() {
     setChosenPlaylist(playlist);
   }
 
+
+
   function playNextVideo() {
-    setChosenVideoId('lTRiuFIWV54');
+    let playlistLength = videoIDs[chosenPlaylist].length;
+    let currentVideo = videoIDs[chosenPlaylist].findIndex(element => element.videoId === chosenVideoId);
+    let nextVideoIndex = currentVideo + 1;
+    if (nextVideoIndex >= playlistLength) nextVideoIndex = 0; 
+    setChosenVideoId(videoIDs[chosenPlaylist][nextVideoIndex].videoId);
+  }
+
+  function playPreviousVideo() {
+    let playlistLength = videoIDs[chosenPlaylist].length;
+    let currentVideo = videoIDs[chosenPlaylist].findIndex(element => element.videoId === chosenVideoId);
+    let nextVideoIndex = currentVideo - 1;
+    if (nextVideoIndex === -1) nextVideoIndex = playlistLength - 1; 
+    setChosenVideoId(videoIDs[chosenPlaylist][nextVideoIndex].videoId);
+  }
+
+  //This function unmutes the video once its playing. This is needed as youtube won't autoplay if the video isn't muted
+  function toggleMute() {
+    setVideoMuted(!videoMuted);
+  }
+
+  function togglePlay() {
+    setVideoPlaying(!videoPlaying);
   }
 
 
-  console.log(chosenPlaylist);
+  
 
   return (
     <div id='app-container' style={{minWidth: windowWidth, minHeight: windowHeight, maxHeight: windowHeight, maxWidth: windowWidth}}>
       <Header setPlaylist={setPlaylist} chosenPlaylist={chosenPlaylist}/>
       {renderPlaylist()}
-      <YouTube
-        videoId={chosenVideoId}                // defaults -> null
-        containerClassName='youtube-container'
-        opts={ { playerVars: {autoplay: 1, controls: 0, disablekb: 1, fs:0, modestbranding: 1, rel: 1, playsinline: 1, showinfo: 0, enablejsapi: 1}} }
-        onEnd={playNextVideo}
-      />
+      <div className = 'youtube-container'>
+        <ReactPlayer className = 'video-player' url= {chosenVideoId === undefined ? null : `https://www.youtube.com/watch?v=${chosenVideoId}`} playing={videoPlaying} muted={videoMuted} onEnded={playNextVideo}></ReactPlayer>
+      </div>
+      <button className='mute-unmute-button' onClick={toggleMute}>Unmute</button>
+      <button className='play-pause-button' onClick={togglePlay}>Play</button>
+      <button className='next-track-button' onClick={playNextVideo}>Next</button>
+      <button className='previous-track-button' onClick={playPreviousVideo}>Previous</button>
+
     </div>
   );
 }
