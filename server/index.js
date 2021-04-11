@@ -3,11 +3,11 @@ const app = express();
 const axios = require('axios');
 const { spawn } = require('child_process');
 const PORT = process.env.PORT || 3001;
-// const path = require('path');
+const path = require('path');
 require('dotenv').config();
 
-// const buildPath = path.join(__dirname, '..', 'build');
-// app.use(express.static(buildPath));
+const buildPath = path.join(__dirname, '..', 'build');
+app.use(express.static(buildPath));
 
 //updated every week over 3 days (due to max 100 youtube requests per day) placeholder values are seen below
 const videoIds = {
