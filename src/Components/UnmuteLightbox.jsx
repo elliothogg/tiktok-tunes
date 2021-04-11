@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import './UnmuteLightbox.css';
 
 export default function UnmuteLightbox(props) {
-    const [unmuted, setUnmuted] = useState(false);
 
 
     function handleClick(event) {
@@ -12,9 +11,9 @@ export default function UnmuteLightbox(props) {
 
     return (
         <div id='unmute-lightbox-container' onClick={handleClick}>
-            <div id='unmute-icon-text'>
+            <div id={props.windowWidth > 550 ? 'unmute-icon-text' : 'unmute-icon-text-mobile'}>
                 <img id='unmute-icon' src="/muteicon.png" alt="mute-icon" />
-                <label id='unmute-text'>Click to Unmute</label>
+                <label id='unmute-text'>{props.windowWidth > 550 ? 'Click to Unmute' : 'Tap to Unmute'}</label>
             </div>
         </div>
     )

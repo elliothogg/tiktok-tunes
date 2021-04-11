@@ -107,7 +107,7 @@ export default function App() {
 
   return (
     <div id='app-container' style={{minWidth: windowWidth, minHeight: windowHeight, maxHeight: windowHeight, maxWidth: windowWidth}}>
-      <Header setPlaylist={setPlaylist} chosenPlaylist={chosenPlaylist}/>
+      <Header setPlaylist={setPlaylist} chosenPlaylist={chosenPlaylist} windowWidth={windowWidth} videoMuted={videoMuted}/>
       {renderPlaylist()}
       <div className = 'youtube-container'>
         <ReactPlayer className = 'video-player' url= {chosenVideoId === undefined ? null : `https://www.youtube.com/watch?v=${chosenVideoId}`} volume={volume} playing={videoPlaying} muted={videoMuted} onEnded={playNextVideo}></ReactPlayer>
@@ -118,7 +118,7 @@ export default function App() {
       <SkipNextIcon className='control-icons' onClick={playNextVideo}/>
       <ContinousSlider changeVolume={changeVolume} volume={volume} toggleMute={toggleMute}/>
       </div>
-      {showLightbox === true ? <UnmuteLightbox removeLightbox={removeLightbox}/> : null}
+      {showLightbox === true ? <UnmuteLightbox windowWidth={windowWidth} removeLightbox={removeLightbox}/> : null}
       
 
     </div>

@@ -37,6 +37,9 @@
   transform: scale(1.8);
 }
 
+
+
+
 .mute-button{
   margin-right: 0;
 }
@@ -45,4 +48,10 @@
   display: inline-flex;
   padding-top: 40px;
   padding-left: 40px;
+}
+
+@media only screen and (max-width: 550px) {
+  .controls {
+      padding-left: 20px;
+  }
 }

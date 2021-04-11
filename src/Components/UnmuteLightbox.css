@@ -24,3 +24,9 @@
     display: block;
     padding-top: 10px;
 }
+
+#unmute-icon-text-mobile {
+    position: fixed;
+    left: 35%;
+    top: 40%;
+}

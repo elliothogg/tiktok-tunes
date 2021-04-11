@@ -9,7 +9,7 @@
     padding-left: 10px;
     padding-top: 10px;
     position: absolute;
-    top: 15%;
+    top: 8%;
     left: 0;
     padding-left: 40px;
     font-size: 30pt;
@@ -17,17 +17,31 @@
     font-weight: 800;
 }
 
+@media only screen and (max-width: 550px) {
+    
+    #header-container h1 {
+        padding-left: 20px;
+    }
+}
+
 #header-container nav li {
     display:inline-block;
     color: rgb(207, 207, 207);
     padding-right: 30px;
     cursor: pointer;
-    font-size: 18pt;
+    font-size: 16pt;
+}
+@media only screen and (max-width: 990px) {
+    
+    #header-container nav li {
+        display: block;
+        padding-top: 30px;
+    }
 }
 
 #header-container nav {
     position: absolute;
-    right: 0;
+    right: 5%;
     top: 30%;
 }
 
@@ -38,5 +52,74 @@
 
 #header-container .selected-menu {
     color:white;
-    font-size: 23pt;
+    font-size: 20pt;
 }
+
+/* Position and sizing of burger button */
+.bm-burger-button {
+    position: fixed;
+    width: 36px;
+    height: 30px;
+    right: 36px;
+    top: 29px;
+  }
+  
+  /* Color/shape of burger icon bars */
+  .bm-burger-bars {
+    background: rgb(207, 207, 207);
+  }
+  
+  /* Color/shape of burger icon bars on hover*/
+  .bm-burger-bars-hover {
+    background: white;
+  }
+  
+  /* Position and sizing of clickable cross button */
+  .bm-cross-button {
+    height: 24px;
+    width: 24px;
+  }
+  
+  /* Color/shape of close button cross */
+  .bm-cross {
+    background: #bdc3c7;
+  }
+  
+  /*
+  Sidebar wrapper styles
+  Note: Beware of modifying this element as it can break the animations - you should not need to touch it in most cases
+  */
+  .bm-menu-wrap {
+    position: fixed;
+    height: 100%;
+    width: 100% !important;
+  }
+  
+  /* General sidebar styles */
+  .bm-menu {
+    background: #373a47;
+    padding: 2.5em 1.5em 0;
+    font-size: 1.15em;
+    width: 100%;
+  }
+  
+  /* Morph shape necessary with bubble or elastic */
+  .bm-morph-shape {
+    fill: #373a47;
+  }
+  
+  /* Wrapper for item list */
+  .bm-item-list {
+    color: #b8b7ad;
+    left: 40%;
+  }
+  
+  /* Individual item */
+  .bm-item {
+    display: inline-block;
+  }
+  
+  /* Styling of overlay */
+  .bm-overlay {
+    background: rgba(0, 0, 0, 0.3);
+  }
