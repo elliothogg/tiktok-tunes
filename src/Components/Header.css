@@ -9,10 +9,12 @@
     padding-left: 10px;
     padding-top: 10px;
     position: absolute;
-    top: 7%;
-    left: 3%;
+    top: 15%;
+    left: 0;
+    padding-left: 40px;
     font-size: 30pt;
     cursor: default;
+    font-weight: 800;
 }
 
 #header-container nav li {
@@ -25,7 +27,7 @@
 
 #header-container nav {
     position: absolute;
-    right: 20%;
+    right: 0;
     top: 30%;
 }
 

@@ -1,0 +1,26 @@
+#unmute-lightbox-container {
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    color: black;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0.8;
+}
+
+#unmute-icon-text {
+    position: fixed;
+    left: 45%;
+    top: 45%;
+}
+
+#unmute-icon {
+    display:block;
+    margin: auto;
+}
+
+#unmute-text {
+    display: block;
+    padding-top: 10px;
+}

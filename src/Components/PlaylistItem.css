@@ -5,6 +5,7 @@
     color: rgb(207, 207, 207);
     cursor: pointer;
     display: inline-block;
+    font-weight: 200;
 }
 
 .playlist-item-container li:hover {

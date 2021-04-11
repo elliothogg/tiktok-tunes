@@ -8,6 +8,7 @@ import PauseIcon from '@material-ui/icons/Pause';
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import SkipNextIcon from '@material-ui/icons/SkipNext';
 import SkipPreviousIcon from '@material-ui/icons/SkipPrevious';
+import UnmuteLightbox from './Components/UnmuteLightbox';
 
 export default function App() {
 
@@ -20,6 +21,13 @@ export default function App() {
   const [videoPlaying, setVideoPlaying] = useState(true);
   const [volume, setVolume] = useState(0);
   const [volumeWhenMuted, setVolumeWhenMuted] = useState(1);
+  const [showLightbox, setShowLightbox] = useState(true);
+
+  function removeLightbox() {
+    setShowLightbox(false);
+    setVideoMuted(false);
+    setVolume(1);
+  }
 
   function handleResize(e) {
     setWindowWidth(window.innerWidth);
@@ -110,6 +118,8 @@ export default function App() {
       <SkipNextIcon className='control-icons' onClick={playNextVideo}/>
       <ContinousSlider changeVolume={changeVolume} volume={volume} toggleMute={toggleMute}/>
       </div>
+      {showLightbox === true ? <UnmuteLightbox removeLightbox={removeLightbox}/> : null}
+      
 
     </div>
   );

@@ -2,7 +2,7 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: 'PT Sans', sans-serif;
+  font-family: 'Montserrat', sans-serif;
 }
 
 
@@ -43,6 +43,6 @@
 
 .controls{
   display: inline-flex;
-  padding-top: 60px;
+  padding-top: 40px;
   padding-left: 40px;
 }
