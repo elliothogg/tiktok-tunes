@@ -122,11 +122,10 @@ const videoIds = {
         {artist: 'The-Notorious-B.I.G.', title: 'Big-Poppa-(2007-Remaster)', videoId: 'QceVTChhlJM'},
         {artist: 'Dubskie', title: 'All-About-Cake', videoId: '25qLu1flvNE'},
         {artist: 'Jason-Derulo', title: 'Get-Ugly', videoId: 'S2lgnitdPdc'},
-        {artist: 'Farruko-&-Nicki-Minaj-&-Bad-Bunny', title: 'Krippy-Kush-(feat.-Travis-Scott-&-Rvssian)-(Travis-Scott-Remix)', videoId: 'puugRJxgdt4'},
         {artist: "Heuss-L'enfoiré", title: 'Moulaga', videoId: 'z_MVN07qM8k'},
         {artist: 'El-Alfa-&-Chael-Produciendo', title: 'Singapur', videoId: 's5yRZOQ3EWI'},
-        {artist: 'Travis-Porter', title: 'Ayy-Ladies', videoId: '37FhMnV-sxc'}
-        // {artist: 'Justin-Bieber', title: 'Come-Around-Me', videoId: 'C86jztHhLyk'},
+        {artist: 'Travis-Porter', title: 'Ayy-Ladies', videoId: '37FhMnV-sxc'},
+        {artist: 'Justin-Bieber', title: 'Come-Around-Me', videoId: 'C86jztHhLyk'}
         // {artist: 'PnB-Rock', title: 'Selfish-(Shlohmo-Remix)', videoId: 'GQDMLSJE3c0'},
         // {artist: 'Lil-Nas-X', title: 'Old-Town-Road-(feat.-Billy-Ray-Cyrus)-(Remix)', videoId: '7ysFgElQtjI'},
         // {artist: 'ilyTOMMY-&-Savage-Ga$p', title: 'Tunnel-of-Love-(Remix)', videoId: 'W9Ul8EJ05Mo'},
