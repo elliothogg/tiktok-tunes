@@ -17,3 +17,9 @@
     color: white;
     font-size: 16pt;
 }
+
+@media only screen and (max-width: 550px) {
+    .playlist-item-container li {
+        padding-bottom: 15px;
+    }
+}

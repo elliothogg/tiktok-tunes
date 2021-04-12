@@ -5,6 +5,11 @@ import { slide as Menu } from 'react-burger-menu';
 
 export default function Header(props) {
 
+    const [isOpen, setIsOpen] = useState(false);
+
+    const lightbox = props.showLightbox === true ? 'not-clickable' : null;
+    const clicked = props.showPlaylist ? null : 'menu-open';
+
     function checkIfSelected(playlist) {
         if (props.chosenPlaylist === playlist) return "selected-menu";
         else return;
@@ -22,7 +27,7 @@ export default function Header(props) {
     return (
         <div id="header-container">
             <h1>TikTok-Tunes</h1>
-            {props.windowWidth > 990 ? <nav><ul>{menuItems}</ul></nav> : props.videoMuted ? null : <Menu>{menuItems}</Menu>}
+            {props.windowWidth > 990 ? <nav><ul>{menuItems}</ul></nav> : <Menu burgerButtonClassName={`${lightbox} ${clicked}`} burgerBarClassName={clicked}  isOpen={isOpen} onOpen={props.togglePlaylist} onClose={props.togglePlaylist}>{menuItems}</Menu>}
         </div>
     )
 }

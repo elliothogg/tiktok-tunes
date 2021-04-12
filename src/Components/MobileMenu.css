@@ -1,0 +1,21 @@
+#mobile-menu {
+    margin-left: 20px;
+    margin-top: 0px;
+    height: 470px;
+}
+
+#mobile-menu li {
+    list-style: none;
+    padding-bottom: 20px;
+    font-size: 15pt;
+    color: rgb(207, 207, 207);
+    cursor: pointer;
+    display: block;
+    font-weight: 200;
+}
+
+
+#mobile-menu .selected-menu {
+    color: white;
+    font-size: 18pt;
+}

@@ -2,13 +2,10 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 import Header from './Components/Header';
 import Playlist from './Components/Playlist';
-import ContinousSlider from './Components/volumeSlider';
 import ReactPlayer from 'react-player';
-import PauseIcon from '@material-ui/icons/Pause';
-import PlayArrowIcon from '@material-ui/icons/PlayArrow';
-import SkipNextIcon from '@material-ui/icons/SkipNext';
-import SkipPreviousIcon from '@material-ui/icons/SkipPrevious';
 import UnmuteLightbox from './Components/UnmuteLightbox';
+import Controls from './Components/Controls';
+import MobileMenu from './Components/MobileMenu';
 
 export default function App() {
 
@@ -22,12 +19,17 @@ export default function App() {
   const [volume, setVolume] = useState(0);
   const [volumeWhenMuted, setVolumeWhenMuted] = useState(1);
   const [showLightbox, setShowLightbox] = useState(true);
+  const [showLoadingAni, setShowLoadingAni] = useState(false);
+  const [showPlaylist, setShowPlaylist] = useState(true);
 
   function removeLightbox() {
     setShowLightbox(false);
+    setVideoPlaying(true);
     setVideoMuted(false);
     setVolume(1);
+    setShowLoadingAni(true);
   }
+
 
   function handleResize(e) {
     setWindowWidth(window.innerWidth);
@@ -40,10 +42,15 @@ export default function App() {
       .then(data => {
         setVideoIDs(data);
         setChosenVideoId(data.lofi[0].videoId);
-        console.log(data);
       })
 
     window.addEventListener("resize", handleResize);
+
+    if (windowWidth < 550) {
+      setVideoPlaying(false);
+      setVideoMuted(false);
+    }
+
   }, [] )
 
   useEffect(()=> {
@@ -104,23 +111,23 @@ export default function App() {
     setVideoMuted(false);
   }
   
+  function stopLoading() {
+    setShowLoadingAni(false);
+  }
+
+  function togglePlaylist() {
+    setShowPlaylist(!showPlaylist);
+  }
 
   return (
     <div id='app-container' style={{minWidth: windowWidth, minHeight: windowHeight, maxHeight: windowHeight, maxWidth: windowWidth}}>
-      <Header setPlaylist={setPlaylist} chosenPlaylist={chosenPlaylist} windowWidth={windowWidth} videoMuted={videoMuted}/>
-      {renderPlaylist()}
+      <Header setPlaylist={setPlaylist} chosenPlaylist={chosenPlaylist} windowWidth={windowWidth} showLightbox={showLightbox} togglePlaylist={togglePlaylist} showPlaylist={showPlaylist}/>
+      {showPlaylist === true ? renderPlaylist() : <MobileMenu setPlaylist={setPlaylist} togglePlaylist={togglePlaylist} chosenPlaylist={chosenPlaylist}/>}
       <div className = 'youtube-container'>
-        <ReactPlayer className = 'video-player' url= {chosenVideoId === undefined ? null : `https://www.youtube.com/watch?v=${chosenVideoId}`} volume={volume} playing={videoPlaying} muted={videoMuted} onEnded={playNextVideo}></ReactPlayer>
+        <ReactPlayer className = 'video-player' url= {chosenVideoId === undefined ? null : `https://www.youtube.com/watch?v=${chosenVideoId}`} volume={volume} playing={videoPlaying} muted={videoMuted} onEnded={playNextVideo} onStart={stopLoading}></ReactPlayer>
       </div>
-      <div className='controls'>
-      <SkipPreviousIcon className='control-icons' onClick={playPreviousVideo}/>
-      {videoPlaying === true ? <PauseIcon className='control-icons' onClick={togglePlay}/> : <PlayArrowIcon className='control-icons' onClick={togglePlay}/>}
-      <SkipNextIcon className='control-icons' onClick={playNextVideo}/>
-      <ContinousSlider changeVolume={changeVolume} volume={volume} toggleMute={toggleMute}/>
-      </div>
+      <Controls windowWidth={windowWidth} playPreviousVideo={playPreviousVideo} togglePlay={togglePlay} playNextVideo={playNextVideo} changeVolume={changeVolume} volume={volume} toggleMute={toggleMute} videoPlaying={videoPlaying} {...{showLoadingAni}} />
       {showLightbox === true ? <UnmuteLightbox windowWidth={windowWidth} removeLightbox={removeLightbox}/> : null}
-      
-
     </div>
   );
 }

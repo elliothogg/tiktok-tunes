@@ -1,0 +1,41 @@
+.control-icons {
+    color: rgb(207, 207, 207);
+    cursor: pointer;
+    margin-right: 20px;
+    transform: scale(1.8);
+  }
+  
+  .mute-button{
+    margin-right: 0;
+  }
+  
+  .controls{
+    display: inline-flex;
+    padding-top: 40px;
+    padding-left: 40px;
+  }
+
+  .mobile-icon {
+    transform: scale(3);
+    position: absolute;
+    bottom: 10%;
+  }
+
+  .loading-icon {
+    margin-right: 25px;
+    margin-top: 30px;
+    color: rgb(207, 207, 207);
+    transform: scale(1.8);
+  }
+
+.MuiCircularProgress-svg {
+  color: rgb(207, 207, 207);
+}
+  
+  @media only screen and (max-width: 550px) {
+    .controls {
+        padding-left: 45%;
+        padding-top: 15px;
+  
+    }
+  }

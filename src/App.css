@@ -30,28 +30,3 @@
 
 
 
-.control-icons {
-  color: rgb(207, 207, 207);
-  cursor: pointer;
-  margin-right: 20px;
-  transform: scale(1.8);
-}
-
-
-
-
-.mute-button{
-  margin-right: 0;
-}
-
-.controls{
-  display: inline-flex;
-  padding-top: 40px;
-  padding-left: 40px;
-}
-
-@media only screen and (max-width: 550px) {
-  .controls {
-      padding-left: 20px;
-  }
-}

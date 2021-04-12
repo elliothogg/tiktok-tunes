@@ -10,7 +10,7 @@
 }
 
 #unmute-icon-text {
-    position: fixed;
+    position: absolute;
     left: 45%;
     top: 45%;
 }

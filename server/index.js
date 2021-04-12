@@ -14,6 +14,7 @@ const videoIds = {
 
     //TikTok search 'lofi'
     lofi : [
+        {artist: 'Lo-Fi-Hip-Hop', title: 'City-Pop-(LoFi)', videoId: 'EC24rvm5Awk'},
         {artist: 'Ponder', title: 'Lofi', videoId: 'xbryhFXXano'},
         {artist: 'Lofi-Network', title: 'Sunset-Vibes', videoId: 'UxZdyOv9Zdk'},
         {artist: 'Aesthetic-Sounds', title: 'Lofi', videoId: 'W6YI3ZFOL0A'},
@@ -22,7 +23,9 @@ const videoIds = {
         {artist: 'Domknowz', title: 'Lofi', videoId: '4Q9WNQcKLYU'},
         {artist: 'Merlin', title: 'Uh-Oh-Stinky', videoId: 's424d3PkroY'},
         {artist: 'Fluce', title: 'LoFi', videoId: 'Pc0nDCq1EYY'},
-        {artist: 'Lo-Fi-Hip-Hop', title: 'City-Pop-(LoFi)', videoId: 'EC24rvm5Awk'}
+        {artist: 'Lostbeats', title: 'Lofi', videoId: 'VpTeQ2mh0tU'},
+        {artist: 'Sol4ac', title: 'Lofi', videoId: 'bFuRIWPhs-0'},
+        {artist: 'B.Young-Beats', title: 'Lofi', videoId: 'djABGMwUVKA'}
       ],
 
     //TikTok search 'popular'
@@ -35,7 +38,13 @@ const videoIds = {
         {artist: 'Jawsh-685', title: 'Laxed-(Siren-Beat)', videoId: 'E0gFA08-9xM'},
         {artist: 'ElyOtto', title: 'SugarCrash!', videoId: 'bWLgA4jUkuw'},
         {artist: 'Masked-Wolf', title: 'Astronaut-In-The-Ocean', videoId: 'MEg-oqI9qmw'},
-        {artist: 'Kreepa', title: 'Oh-No', videoId: '1nkYkB-nXR0'}
+        {artist: 'Kreepa', title: 'Oh-No', videoId: '1nkYkB-nXR0'},
+        {artist: 'Johnny-Orlando-&-Mackenzie-Ziegler', title: 'What-If-(I-Told-You-I-Like-You)', videoId: 'KWG9uaw4htM'},
+        {artist: 'Conkarah', title: 'Banana-(feat.-Shaggy)-[DJ-FLe---Minisiren-Remix]', videoId: 'sy9l7y7npGs'},
+        {artist: 'CG5', title: 'Absolutely-Anything-(feat.-Or3o)', videoId: 'VxeQ1NXeOFk'}
+        // {artist: 'BENEE', title: 'Supalonely-(feat.-Gus-Dapperton)', videoId: 'Rb6Scz-5YOs'},
+        // {artist: 'DaBaby,-Roddy-Ricch', title: 'ROCKSTAR', videoId: 'mxFstYSbBmc'},
+        // {artist: 'Kevin-MacLeod', title: 'Monkeys-Spinning-Monkeys', videoId: 'mWo3woi9Uro'}
       ],
     
     //TikTok search 'indiemusic'
@@ -49,7 +58,13 @@ const videoIds = {
         {artist: 'Ritt-Momney', title: 'Put-Your-Records-On', videoId: 'WyVfkr6nsrk'},
         {artist: 'The-xx', title: 'Intro', videoId: 'veHqJSC-9Lo'},
         {artist: 'Claire-Rosinkranz', title: 'Backyard-Boy', videoId: 'Mbj26vHDMII'},
-        {artist: 'The-Smiths', title: 'This-Charming-Man-(2011-Remaster)', videoId: 'OYYZFx7_DS8'}
+        {artist: 'The-Smiths', title: 'This-Charming-Man-(2011-Remaster)', videoId: 'OYYZFx7_DS8'},
+        {artist: 'Cyndi-Lauper', title: 'Girls-Just-Want-to-Have-Fun', videoId: 'PIb6AZdTr-A'},
+        {artist: 'Neffex', title: "I'm-Not-Worth-It", videoId: 'hX94W2I6D8c'}
+        // {artist: 'Billie-Eilish', title: 'Ocean-Eyes', videoId: 'viimfQi_pUw'},
+        // {artist: 'grandson', title: 'Blood-//-Water-(Krupa-Remix)', videoId: 'wv4pkUgTcjk'},
+        // {artist: 'The-Cranberries', title: 'Dreams-(Acoustic-Version)', videoId: '5qY0BzrDXp0'},
+        // {artist: 'Lianne-La-Havas', title: 'Unstoppable-(FKJ-Remix)', videoId: 'QCjAHj_qnCg'}
       ],
 
     //TikTok search 'r&bjams'
@@ -63,7 +78,17 @@ const videoIds = {
         {artist: 'tuliob', title: 'altos-r&b-jam', videoId: 'i96EzK3o-QU'},
         {artist: 'RMC-Jams', title: 'Today-Will-Be', videoId: 'C4bPzTWcClw'},
         {artist: 'RMC-Jams', title: 'Lera', videoId: 'cpLZeSigNvY'},
-        {artist: 'RMC-Jams', title: 'This-World', videoId: 'RYOi2LSsUb0'}
+        {artist: 'RMC-Jams', title: 'This-World', videoId: 'RYOi2LSsUb0'},
+        {artist: 'The-Urban-Hip-Hop-Studio', title: 'RnB-Jams--(Tempo-100)', videoId: 'umpbICiow8c'},
+        {artist: 'Jason-Damico', title: 'B-Jam', videoId: 'tcYjXiI5lNk'}
+        // {artist: 'Boomer-Jams', title: 'Heart-Murmurs-R&b', videoId: 'KnoZflwkfSA'},
+        // {artist: 'Cates-Ave.', title: 'B-Jam', videoId: 'YjNMh1vK61A'},
+        // {artist: 'We-Funk', title: 'B-Jam', videoId: '9a5iRkVZEzE'},
+        // {artist: 'Jennifer-J.-McCaskill', title: '3-D-Jams', videoId: '4yYiypz3vnI'},
+        // {artist: 'Ifjams', title: 'Lately', videoId: 'Ma-UIJNV094'},
+        // {artist: 'Ifjams', title: 'Secondfloor', videoId: 'MIrSwjATAgM'},
+        // {artist: 'Ifjams', title: 'LSD', videoId: 'IwxCrHVPLV8'},
+        // {artist: 'Ifjams', title: '53A-Canalport-Ave.', videoId: 'GYb_Ev4nMZU'}
       ],
 
     //TikTok search 'challenge'
@@ -76,7 +101,15 @@ const videoIds = {
         {artist: 'Erica-Banks', title: 'Buss-It', videoId: 'NOoHJ_ZXlJU'},
         {artist: 'Millie-B', title: 'M-to-the-B', videoId: 'FSjvlnneEto'},
         {artist: 'lil-darkie', title: 'HAHA', videoId: 'QXXXSRQd4TI'},
-        {artist: 'Vengaboys', title: 'Boom,-Boom,-Boom,-Boom!!', videoId: 'llyiQ4I-mcQ'}
+        {artist: 'Vengaboys', title: 'Boom,-Boom,-Boom,-Boom!!', videoId: 'llyiQ4I-mcQ'},
+        {artist: 'DDG-&-OG-Parker', title: 'Impatient-(feat.-Coi-Leray)', videoId: 'SBgUhk6Y8M4'},
+        {artist: 'Kevin-MacLeod', title: 'Monkeys-Spinning-Monkeys', videoId: 'mWo3woi9Uro'},
+        {artist: 'Michael-Jackson', title: 'Bad-(2012-Remaster)', videoId: 'o-Ncnh5dcJU'}
+        // {artist: 'Rilès', title: 'Pesetas', videoId: 'kJNk4TW7RAk'},
+        // {artist: 'The-Kiboomers', title: 'The-Months-of-the-Year', videoId: '-d3jkbP1xc8'},
+        // {artist: 'Zay-Hilfigerrr-&-Zayion-McCall', title: 'Juju-on-That-Beat-(TZ-Anthem)-[Challenge-Version]', videoId: 'a2v_zGWawP0'},
+        // {artist: 'DOLLA', title: 'Impikan---Challenge', videoId: '2CwtrCWlqPw'},
+        // {artist: 'Aidilia-Hilda', title: 'Tak-Mau-Mau---Challenge', videoId: '2GN4B34QOsk'}
       ],
 
     //TikTok search 'hip-hopmusic'
@@ -90,7 +123,19 @@ const videoIds = {
         {artist: 'Dubskie', title: 'All-About-Cake', videoId: '25qLu1flvNE'},
         {artist: 'Jason-Derulo', title: 'Get-Ugly', videoId: 'S2lgnitdPdc'},
         {artist: 'Farruko-&-Nicki-Minaj-&-Bad-Bunny', title: 'Krippy-Kush-(feat.-Travis-Scott-&-Rvssian)-(Travis-Scott-Remix)', videoId: 'puugRJxgdt4'},
-        {artist: "Heuss-L'enfoiré", title: 'Moulaga', videoId: 'z_MVN07qM8k'}
+        {artist: "Heuss-L'enfoiré", title: 'Moulaga', videoId: 'z_MVN07qM8k'},
+        {artist: 'El-Alfa-&-Chael-Produciendo', title: 'Singapur', videoId: 's5yRZOQ3EWI'},
+        {artist: 'Travis-Porter', title: 'Ayy-Ladies', videoId: '37FhMnV-sxc'}
+        // {artist: 'Justin-Bieber', title: 'Come-Around-Me', videoId: 'C86jztHhLyk'},
+        // {artist: 'PnB-Rock', title: 'Selfish-(Shlohmo-Remix)', videoId: 'GQDMLSJE3c0'},
+        // {artist: 'Lil-Nas-X', title: 'Old-Town-Road-(feat.-Billy-Ray-Cyrus)-(Remix)', videoId: '7ysFgElQtjI'},
+        // {artist: 'ilyTOMMY-&-Savage-Ga$p', title: 'Tunnel-of-Love-(Remix)', videoId: 'W9Ul8EJ05Mo'},
+        // {artist: 'Mc-Talibã-&-Mc-3L', title: 'Um-Sabadão-Desse-Uma-Lua-Dessa', videoId: 'Gaec2xS-2D4'},
+        // {artist: 'Sage-The-Gemini', title: 'Now-and-Later', videoId: 'ACPd7HSZkc0'},
+        // {artist: 'Gaming-World', title: 'Orange-Justice-Dance-Emote-(From-"-Fortnite-Battle-Royale")', videoId: 'MH0XmZvryRs'},
+        // {artist: 'Sidhu-Moosewala-&-Amrit-Maan', title: 'Bambiha-Bole-8', videoId: 'F2J_k79vxGI'},
+        // {artist: 'Yung-Bae-&-bbno$-&-Billy-Marchiafava', title: 'Bad-Boy', videoId: 'vaG_I9aBENw'},
+        // {artist: 'Sandhu-Surjit', title: 'Puthe-Kamm', videoId: 'C90MmUhsnHM'}
       ]
 }
 
@@ -126,7 +171,7 @@ app.get('/api/hiphop', (req, res) => {
 
 
 function updatePlaylist(nameOfPlaylist, tiktokSearchTerm) {
-    const pyProg = spawn('python3', ['./scrape-tiktok/test.py', tiktokSearchTerm, '10']);
+    const pyProg = spawn('python3', ['./scrape-tiktok/test.py', tiktokSearchTerm, '20']);
     pyProg.stdout.on('data', function(data) {
 
         getYoutubeIds(JSON.parse(data), nameOfPlaylist);

@@ -17,12 +17,6 @@
     font-weight: 800;
 }
 
-@media only screen and (max-width: 550px) {
-    
-    #header-container h1 {
-        padding-left: 20px;
-    }
-}
 
 #header-container nav li {
     display:inline-block;
@@ -57,9 +51,9 @@
 
 /* Position and sizing of burger button */
 .bm-burger-button {
-    position: fixed;
-    width: 36px;
-    height: 30px;
+    position: absolute;
+    width: 30px;
+    height: 25px;
     right: 36px;
     top: 29px;
   }
@@ -67,6 +61,10 @@
   /* Color/shape of burger icon bars */
   .bm-burger-bars {
     background: rgb(207, 207, 207);
+  }
+
+  .menu-open {
+    background:blue;
   }
   
   /* Color/shape of burger icon bars on hover*/
@@ -78,11 +76,17 @@
   .bm-cross-button {
     height: 24px;
     width: 24px;
+    pointer-events: none;
+  }
+
+  .not-clickable {
+    pointer-events: none;
   }
   
   /* Color/shape of close button cross */
   .bm-cross {
-    background: #bdc3c7;
+    background: none;
+    pointer-events: none;
   }
   
   /*
@@ -97,7 +101,7 @@
   
   /* General sidebar styles */
   .bm-menu {
-    background: #373a47;
+    background: none;
     padding: 2.5em 1.5em 0;
     font-size: 1.15em;
     width: 100%;
@@ -111,7 +115,8 @@
   /* Wrapper for item list */
   .bm-item-list {
     color: #b8b7ad;
-    left: 40%;
+    left: 5%;
+    top: 50px !important;
   }
   
   /* Individual item */
@@ -123,3 +128,24 @@
   .bm-overlay {
     background: rgba(0, 0, 0, 0.3);
   }
+
+
+  @media only screen and (max-width: 550px) {
+    
+    #header-container h1 {
+        padding-left: 20px;
+        top: 0%;
+        font-size: 25pt;
+    }
+
+    #header-container {
+      height: 80px;
+    }
+
+    .bm-burger-button {
+      top: 22px;
+      width: 24px;
+      height: 18px;
+      right: 26px;
+    }
+}
